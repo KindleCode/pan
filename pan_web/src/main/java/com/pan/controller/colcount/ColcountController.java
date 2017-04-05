@@ -20,6 +20,7 @@ import com.pan.service.ColcountService;
 public class ColcountController{
 	private static Logger logger = Logger.getLogger(ColcountController.class);
 	
+	
 	@Autowired
 	private ColcountService colcountService;
 	
