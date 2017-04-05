@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pan.constant.UserConstant;
-import com.pan.controller.root.RootController;
 import com.pan.domain.Colcount;
 import com.pan.domain.User;
 import com.pan.service.ColcountService;
