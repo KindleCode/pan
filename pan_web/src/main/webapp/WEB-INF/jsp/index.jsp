@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
   <head>
@@ -33,7 +32,7 @@
      <script type="text/javascript">
 	    	$(function () {
 	    		
-					});
+			});
 	 </script>
     
   </head>
@@ -54,19 +53,19 @@
         <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
 	          	
-            <li><a href="#">欢迎 Mr Cai</a></li>
+            <li><a href="#">欢迎 ${username}</a></li>
             <li>
             	 <a style="text-decoration:none;" class="dropdown" data-toggle="dropdown" href="#" role="button">一个下拉框
             	 		<span class="caret"></span>
            		 </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
+									<li><a href="#">个人资料</a></li>
+									<li><a href="#">修改密码</a></li>
 									<li><a href="#">Something else here</a></li>
 									<li role="separator" class="divider"></li>
 									<li class="dropdown-header">Nav header</li>
-									<li><a href="#">Separated link</a></li>
-									<li><a href="#">One more separated link</a></li>
+									<li><a href="#">意见反馈</a></li>
+									<li><a href="#">退出登录</a></li>
 								</ul>
             </li>
             <li><a href="#"></a></li>

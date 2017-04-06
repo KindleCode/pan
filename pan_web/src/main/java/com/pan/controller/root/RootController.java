@@ -30,6 +30,7 @@ public class RootController extends BaseController{
 		User user = (User)session.getAttribute(UserConstant.REDIRECT_USER);
 		//清除此对象
 		session.removeAttribute(UserConstant.REDIRECT_USER);
+		//如果并没有登录
 		Root realRoot = rootService.getRootByUsername(user.getUsername());
 		if(realRoot == null || !realRoot.getPassword().equals(user.getPassword())){
 			//如果用户名密码有误，或者密码为空(前端直接过滤)

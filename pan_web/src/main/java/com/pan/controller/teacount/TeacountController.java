@@ -25,11 +25,12 @@ public class TeacountController {
 
 	@SuppressWarnings("unused")
 	@RequestMapping("/login")
-	@ResponseBody
 	public String teacountLogin(HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute(UserConstant.REDIRECT_USER);
-		 Teacount teacount = teacountService.getTeacountByUsername(user.getUsername());
+	    Teacount teacount = teacountService.getTeacountByUsername(user.getUsername());
+		//清除此对象
+		session.removeAttribute(UserConstant.REDIRECT_USER);
 		if(teacount == null || !teacount.getPassword().equals(user.getPassword())){
 			//如果用户名密码有误，或者密码为空(前端直接过滤)
 			model.addAttribute("status","fail");
@@ -46,6 +47,7 @@ public class TeacountController {
 		//设置状态与信息
 		model.addAttribute("status","success");
 		model.addAttribute("message", "登录成功");
+		model.addAttribute("username",teacount.getUsername());
 		return "index";
 	}
 }
