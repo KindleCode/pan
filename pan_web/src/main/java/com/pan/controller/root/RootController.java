@@ -51,9 +51,3 @@ public class RootController extends BaseController{
 		return "index";
 	}
 }
-
-
-
-
-
-
