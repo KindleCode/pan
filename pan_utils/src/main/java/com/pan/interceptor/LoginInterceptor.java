@@ -28,7 +28,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
 		//如果是直接跳转登录界面的直接放行
-		if(request.getRequestURI().contains("login"))
+		if(request.getRequestURI().contains("/login")||request.getRequestURI().contains("/css")||request.getRequestURI().contains("/js"))
 			 return true;
 		//获取session中存储的当前登录对象
 		String userType = (String)request.getSession().getAttribute(UserConstant.SESSION_USER_TYPE);
@@ -36,6 +36,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		if(userType == null || "".equals(userType)){	
 			//跳转路径
 			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+			//response.sendRedirect(request.getServletPath() + "/WEB-INF/jsp/login.jsp");
 			//日志填写
 			logger.info("用户 "+ request.getRemoteAddr() +" 没有登录");
 			//拦截器不放行
