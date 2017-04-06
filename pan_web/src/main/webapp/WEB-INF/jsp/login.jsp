@@ -12,27 +12,39 @@
     <title>登录界面</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" tppabs="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" tppabs="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-		<link href="/css/signin.css" tppabs="http://v3.bootcss.com/examples/signin/signin.css" rel="stylesheet">
+		<link href="${pageContext.request.contextPath}/css/signin.css" tppabs="http://v3.bootcss.com/examples/signin/signin.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js" tppabs="http://v3.bootcss.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/js/ie-emulation-modes-warning.js" tppabs="http://v3.bootcss.com/assets/js/ie-emulation-modes-warning.js"></script>
-		<script type="text/javascript" src="/js/jquery-1.11.3.min.js" ></script>
+    <script src="${pageContext.request.contextPath}/js/ie-emulation-modes-warning.js" tppabs="http://v3.bootcss.com/assets/js/ie-emulation-modes-warning.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" ></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../../../cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js" tppabs="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="../../../cdn.bootcss.com/respond.js/1.4.2/respond.min.js" tppabs="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript">
-    
-    		$(function(){
-    			
-    		});
+		$(function(){
+			//(点击帮助)模态框弹出
+			$("#help").click(function(){
+				$("#myModal").modal('show');
+			});
+			
+			//点击test进行用户名密码验证(只针对学院老师进行忘记密码操作)
+			$("#test").click(function(){
+				//取值
+				var mail = $("#remail").text();
+				//这里进行ajax请求，查询是否有误
+				var username = $("#reusername").text();
+				$.post("${pageContext.request.contextPath}/teacount/",{'mail' : mail,'username' : username},function(data){
+					//验证成功或者失败进行提醒
+				});
+			});
+		});    
     
     </script>
-    
   </head>
 
   <body>
@@ -50,7 +62,6 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
-	          	
             <li><a href="#">帮助</a></li>
             <li><a href="#"></a></li>
           </ul>
@@ -86,11 +97,11 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/js/bootstrap.min.js" tppabs="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js" tppabs="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="/js/vendor/holder.min.js" tppabs="http://v3.bootcss.com/assets/js/vendor/holder.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/vendor/holder.min.js" tppabs="http://v3.bootcss.com/assets/js/vendor/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/js/ie10-viewport-bug-workaround.js" tppabs="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="${pageContext.request.contextPath}/js/ie10-viewport-bug-workaround.js" tppabs="http://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
