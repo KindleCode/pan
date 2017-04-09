@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pan.constant.UserConstant;
@@ -17,7 +19,7 @@ public class LoginController{
 	
 	//此方法用户转发用户登录
 	@RequestMapping("/login")
-	public String userLogin(User user,HttpServletRequest request/*RedirectAttributes attributes*/){
+	public String userLogin(User user,HttpServletRequest request,Model model/*RedirectAttributes attributes*/){
 		//将重定向之前的数据放进重定向数据中心
 		//attributes.addFlashAttribute(UserConstant.SESSION_USER, user);
 		//attributes.addFlashAttribute("username",user.getUsername());
@@ -35,6 +37,7 @@ public class LoginController{
 			logger.info("教室用户: " + user.getUsername() + "登录界面跳转。。");
 			return "redirect:/teacount/login";
 		}else {
+			model.addAttribute("testid", "abc");
 			return "login";
 		}
 	}

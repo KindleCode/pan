@@ -32,12 +32,31 @@
      <script type="text/javascript">
 	    	$(function () {
 	    		
+	    		
+	    		//一个下拉框的事件绑定
+	    			//个人信息
+	    			$("#myinfo").click(function(){
+	    			
+	    		});
+	    		
+	    			//修改密码
+					$("#changePass").click(function(){
+	    			
+	    		});
+	    			//用户像系统管理员进行意见反馈
+					$("#message").click(function(){
+					
+				});
+
+					//用户退出登录
+					$("#edit").click(function(){
+					
+				});
+
 			});
 	 </script>
     
   </head>
-   
-
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -59,13 +78,11 @@
             	 		<span class="caret"></span>
            		 </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">个人资料</a></li>
-									<li><a href="#">修改密码</a></li>
-									<li><a href="#">Something else here</a></li>
+									<li id="myinfo"><a href="#">个人资料</a></li>
+									<li id="changePass"><a href="#">修改密码</a></li>
 									<li role="separator" class="divider"></li>
-									<li class="dropdown-header">Nav header</li>
-									<li><a href="#">意见反馈</a></li>
-									<li><a href="#">退出登录</a></li>
+									<li id="message"><a href="#">意见反馈</a></li>
+									<li id="edit"><a href="#">退出登录</a></li>
 								</ul>
             </li>
             <li><a href="#"></a></li>
@@ -165,48 +182,48 @@
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
-                <tr>
+                <tr class="success">
                   <th>文件名</th>
                   <th>文件大小</th>
                   <th>文件格式</th>
                   <th>修改时间</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr class="folder_list" title="c://pan/text11.java">
-                	<input id="test" type="hidden"  value="c://pan/text1.java"/>
-                  <td>科研课题</td>
-                  <td>1024kb</td>
-                  <td>文件夹</td>
-                  <td>2016-02-01</td>
+              <tbody  style="cursor:hand">
+                <tr class="folder_list"  title="c://pan/text11.java">
+               		<input id="test" type="hidden"  value="c://pan/text1.java"/>
+                    <td><a href="javascript:void" style="text-decoration:none;">科研课题</a></td>
+                    <td><a href="javascript:void" style="text-decoration:none;">1024kb</a></td>
+                    <td><a href="javascript:void" style="text-decoration:none;">文件夹</a></td>
+                    <td><a href="javascript:void" style="text-decoration:none;">2016-02-01</a></td>
                 </tr>
                  <tr class="folder_list" title="c://pan/text22.java">
-                 	<input type="hidden"  value="c://pan/text2.java"/>
-                  <td>教研课题</td>
-                  <td>1024kb</td>
-                  <td>文件夹</td>
-                  <td>2016-02-01</td>
+                 	  <input type="hidden"  value="c://pan/text2.java"/>
+	                  <td><a href="javascript:void" style="text-decoration:none;">科研课题</a></td>
+	                  <td><a href="javascript:void" style="text-decoration:none;">1024kb</a></td>
+	                  <td><a href="javascript:void" style="text-decoration:none;">文件夹</a></td>
+	                  <td><a href="javascript:void" style="text-decoration:none;">2016-02-01</a></td>
                 </tr>
-                 <tr class="folder_list"  title="c://pan/text33.java">
+                 <tr class="folder_list"   title="c://pan/text33.java">
                  	<input type="hidden"  value="c://pan/text3.java"/>
-                  <td>科研论文</td>
-                  <td>1024kb</td>
-                  <td>文件夹</td>
-                  <td>2016-02-01</td>
+	                  <td><a href="javascript:void" style="text-decoration:none;">科研课题</a></td>
+	                  <td><a href="javascript:void" style="text-decoration:none;">1024kb</a></td>
+	                  <td><a href="javascript:void" style="text-decoration:none;">文件夹</a></td>
+	                  <td><a href="javascript:void" style="text-decoration:none;">2016-02-01</a></td>
                 </tr>
                  <tr class="folder_list"  title="c://pan/text44.java">
                  	<input type="hidden"  value="c://pan/text4.java"/>
-                  <td>获奖资料</td>
-                  <td>1024kb</td>
-                  <td>文件夹</td>
-                  <td>2016-02-01</td>
+	                  <td><a href="javascript:void" style="text-decoration:none;">科研课题</a></td>
+	                  <td><a href="javascript:void" style="text-decoration:none;">1024kb</a></td>
+	                  <td><a href="javascript:void" style="text-decoration:none;">文件夹</a></td>
+	                  <td><a href="javascript:void" style="text-decoration:none;">2016-02-01</a></td>
                 </tr>
                  <tr class="folder_list"  title="c://pan/text55.java">
                  	<input type="hidden"  value="c://pan/text5.java"/>
-                  <td>专利或著作权</td>
-                  <td>1024kb</td>
-                  <td>文件夹</td>
-                  <td>2016-02-01</td>
+                    <td><a href="javascript:void" style="text-decoration:none;">科研课题</a></td>
+                    <td><a href="javascript:void" style="text-decoration:none;">1024kb</a></td>
+                    <td><a href="javascript:void" style="text-decoration:none;">文件夹</a></td>
+                    <td><a href="javascript:void" style="text-decoration:none;">2016-02-01</a></td>
                 </tr>
               </tbody>
             </table>

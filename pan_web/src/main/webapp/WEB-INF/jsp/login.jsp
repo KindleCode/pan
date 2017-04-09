@@ -70,7 +70,7 @@
     </nav>
 
     <div class="container">
-      <form class="form-signin" action="" method="post">
+      <form class="form-signin" action="${pageContext.request.contextPath}/login" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Username</label>
         <input id="inputEmail" class="form-control" name="username" placeholder="Username" required autofocus>
