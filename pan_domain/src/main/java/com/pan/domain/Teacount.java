@@ -16,6 +16,15 @@ public class Teacount{
 	private String mail;
 	private String folId;
 	private String panId;
+	
+	public Teacount(){}
+	
+	public Teacount(String username,String password){
+		this.password = password;
+		this.username = username;
+	}
+	
+	
 	public String getId() {
 		return id;
 	}

@@ -32,14 +32,19 @@
 				$("#myModal").modal('show');
 			});
 			
-			//点击test进行用户名密码验证(只针对学院老师进行忘记密码操作)
+			//点击验证进行用户名密码验证(只针对学院老师进行忘记密码操作)
 			$("#test").click(function(){
 				//取值
-				var mail = $("#remail").text();
+				var checkmail = $("#checkmail").val();
 				//这里进行ajax请求，查询是否有误
-				var username = $("#reusername").text();
-				$.post("${pageContext.request.contextPath}/teacount/",{'mail' : mail,'username' : username},function(data){
+				var checkusername = $("#checkusername").val();
+				$.post("${pageContext.request.contextPath}/teacount/login/checkReset",{'checkmail' : checkmail,'checkusername' : checkusername},function(data){
 					//验证成功或者失败进行提醒
+					if(data.success == true){
+						//如果成功
+					}else{
+						//如果没成功
+					}
 				});
 			});
 		});    
@@ -62,7 +67,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">帮助</a></li>
+            <li id="help"><a href="#">帮助</a></li>
             <li><a href="#"></a></li>
           </ul>
         </div>
@@ -93,6 +98,29 @@
       </form>
 
     </div> <!-- /container -->
+    
+        <!-- 模态框弹出 -->
+    <div class="modal fade" id="myModal">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">忘记密码 &nbsp;&nbsp; <span id="message" style="color: red;font-size:15px;"></span>
+		        </h4>
+		      </div>
+		      <div class="modal-body">
+		      	<label>用户邮箱:</label>
+		        <input type="text" id="checkmail" placeholder="请输入邮箱 .."/>
+		        <label>用户名:</label>
+		        <input type="text" id="checkusername" placeholder="请输入用户名 .."/>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" id="test" >验证</button><!-- data-dismiss="modal" -->
+		        <button type="button" class="btn btn-primary" id="resetPass" disabled="disabled" >重置密码</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -4,4 +4,8 @@
 	<select id="getTeacountByUsername" parameterType="String" resultType="com.pan.domain.Teacount">
 		select * from teacount where username = #{username}
 	</select>
+	
+	<update id="updatePassword" parameterType="com.pan.domain.Teacount" >
+		update teacount set password = #{password} where username = #{username}	
+	</update>
 </mapper>
