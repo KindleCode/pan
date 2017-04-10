@@ -57,13 +57,13 @@ public class TeacountController {
 	/**用户登录时忘记密码，邮箱直接发回去随机，登录之后才能进行随意的修改*/
 	@RequestMapping("login/checkReset")
 	@ResponseBody
-	public Result checkReset(String checkmail,String checkusername){
+	public Result checkReset(String checkusername){
 		//进行邮箱与用户名的验证
-		Teacount teacount = teacountService.getTeacountByUsername(checkusername);
+		/**Teacount teacount = teacountService.getTeacountByUsername(checkusername);
 		if(teacount == null || !teacount.getMail().equals(checkmail.trim()))
 			//返回没有成功的结果对象
 			return Result.resultError("填写有误!");
-		
+		*/
 		//随机生成一组六位数字，并将密码
 		String newPass = RandomNumber.getRandomPass();
 		//发送至邮箱(消息队列)
@@ -72,8 +72,19 @@ public class TeacountController {
 		teacountService.updatePassword(new Teacount(checkusername,newPass));
 		logger.info(checkusername + " 密码修改成功！【" + newPass + "】");
 		//如果用户名邮箱正确，则发送邮箱，随机生成一组六位的数字，并将用户名的密码进行修改
-		return Result.resultOk("验证成功!");
+		return Result.resultOk("密码修改成功!");
 	}
+	
+	
+	@RequestMapping("login/test")
+	@ResponseBody
+	public Result test(String checkmail,String checkusername){
+		//进行邮箱与用户名的存在与否的验证
+		Teacount teacount = teacountService.getTeacountByUsername(checkusername);
+		if(teacount == null || !teacount.getMail().equals(checkmail.trim()))
+			return Result.resultError("填写有误!");
+		return Result.resultOk("验证成功!");
+}
 }
 
 

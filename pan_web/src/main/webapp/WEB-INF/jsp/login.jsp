@@ -27,26 +27,65 @@
     <![endif]-->
     <script type="text/javascript">
 		$(function(){
+			var checkusername = null;
 			//(点击帮助)模态框弹出
 			$("#help").click(function(){
 				$("#myModal").modal('show');
 			});
 			
+			//点击用户名/密码框的时候提示位置的文字置空
+			$("#checkmail").click(function(){
+				$("#message").text("");
+			});
+			$("#checkusername").click(function(){
+				$("#message").text("");
+			});
+			
 			//点击验证进行用户名密码验证(只针对学院老师进行忘记密码操作)
 			$("#test").click(function(){
+				//$("#message").text("你好");
 				//取值
 				var checkmail = $("#checkmail").val();
 				//这里进行ajax请求，查询是否有误
-				var checkusername = $("#checkusername").val();
-				$.post("${pageContext.request.contextPath}/teacount/login/checkReset",{'checkmail' : checkmail,'checkusername' : checkusername},function(data){
+				checkusername = $("#checkusername").val();
+				
+				//非空判断
+				if($.trim(checkmail) == null || $.trim(checkusername) == null){
+					$("#message").text("用户名/密码不能为空!");
+					return;
+				}
+				
+				//点击验证按钮，判断是否存在用户名密码，或者是否匹配
+				$.post("${pageContext.request.contextPath}/teacount/login/test",{'checkmail' : checkmail,'checkusername' : checkusername},function(data){
+					//alert(data.success);
 					//验证成功或者失败进行提醒
 					if(data.success == true){
-						//如果成功
+						//如果成功，将重置密码的按钮放开
+						$("#resetPass").removeAttr("disabled");
 					}else{
-						//如果没成功
+						//如果没成功，红字提醒
+						$("#message").text("用户名/密码填写有误!");
 					}
 				});
 			});
+			
+			//点击重置密码
+			$("#resetPass").click(function(){
+				$.post("${pageContext.request.contextPath}/teacount/login/checkReset",{"checkusername" : checkusername},function(data){
+					//如果重置密码成功
+					if(data.success == true){
+						$("#message").text("新密码已经发送至您的邮箱，修改密码请在登录后操作!");
+						window.setTimeout(function(){
+							//隐藏模态框，并置空
+							$("#myModal").modal('hide');	
+							$("#message").text("");
+							$("#checkmail").val("");
+							$("#checkusername").val("");
+						},3000); 
+					}
+				});
+			});
+		
 		});    
     
     </script>
@@ -105,7 +144,7 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">忘记密码 &nbsp;&nbsp; <span id="message" style="color: red;font-size:15px;"></span>
+		        <h4 class="modal-title">忘记密码 &nbsp;&nbsp; <span id="message" style="color:red;font-size:15px;font-weight:bold;"></span>
 		        </h4>
 		      </div>
 		      <div class="modal-body">
