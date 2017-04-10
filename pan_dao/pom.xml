@@ -8,11 +8,6 @@
   <artifactId>pan_dao</artifactId>
   <dependencies>
   
-  <dependency>
-			<groupId>cn.caiminjie.e3mall</groupId>
-			<artifactId>e3-manager-pojo</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 		<!-- 添加对mybatis的依赖 -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
