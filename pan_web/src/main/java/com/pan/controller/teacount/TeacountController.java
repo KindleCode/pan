@@ -75,7 +75,6 @@ public class TeacountController {
 		return Result.resultOk("密码修改成功!");
 	}
 	
-	
 	@RequestMapping("login/test")
 	@ResponseBody
 	public Result test(String checkmail,String checkusername){
@@ -83,6 +82,8 @@ public class TeacountController {
 		Teacount teacount = teacountService.getTeacountByUsername(checkusername);
 		if(teacount == null || !teacount.getMail().equals(checkmail.trim()))
 			return Result.resultError("填写有误!");
+		
+		logger.info(checkusername + " 密码修改尝试验证【成功！】");
 		return Result.resultOk("验证成功!");
 }
 }
