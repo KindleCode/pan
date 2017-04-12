@@ -19,17 +19,15 @@ import com.pan.service.RootService;
 @RequestMapping(value = "/root")
 public class RootController extends BaseController{
 	private static Logger logger = Logger.getLogger(RootController.class);
+	
 	@Autowired
 	private RootService rootService;
 
 	//Root用户登录
 	@SuppressWarnings("unused")
 	@RequestMapping("/login")
-	public String rootLogin(HttpServletRequest request,Model model){
+	public String rootLogin(User user,HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute(UserConstant.REDIRECT_USER);
-		//清除此对象
-		session.removeAttribute(UserConstant.REDIRECT_USER);
 		//如果并没有登录
 		Root realRoot = rootService.getRootByUsername(user.getUsername());
 		if(realRoot == null || !realRoot.getPassword().equals(user.getPassword())){
@@ -49,6 +47,6 @@ public class RootController extends BaseController{
 		//设置状态与信息
 		model.addAttribute("status","success");
 		model.addAttribute("message", "登录成功");
-		return "index";
+		return "rootmanager";
 	}
 }

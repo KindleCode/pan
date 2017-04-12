@@ -14,21 +14,25 @@ import com.pan.constant.UserConstant;
 import com.pan.domain.Colcount;
 import com.pan.domain.User;
 import com.pan.service.ColcountService;
-
+/**
+ * 
+ * <p>Title: ColcountController</p>
+ * <p>Description: 学院账号controller </p>
+ */
 @Controller
 @RequestMapping("/colcount")
 public class ColcountController{
+	//日志文件导入
 	private static Logger logger = Logger.getLogger(ColcountController.class);
+	
 	@Autowired
 	private ColcountService colcountService;
 	
+	/**学院账号登录*/
 	@SuppressWarnings("unused")
 	@RequestMapping("/login")
-	private String ColcountLogin(HttpServletRequest request,Model model){
+	private String ColcountLogin(User user,HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute(UserConstant.REDIRECT_USER);
-		//清除此对象
-		session.removeAttribute(UserConstant.REDIRECT_USER);
 		Colcount colcount = colcountService.getColcountByUsername(user.getUsername());
 		//如果并没有登录
 		if(colcount == null || !colcount.getPassword().equals(user.getPassword())){
@@ -47,6 +51,7 @@ public class ColcountController{
 		//设置状态与信息
 		model.addAttribute("status","success");
 		model.addAttribute("message", "登录成功");
-		return "index";
+		//跳转学院账号用户管理页面
+		return "academymanager";
 	}
 }

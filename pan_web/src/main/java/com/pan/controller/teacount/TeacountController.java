@@ -28,12 +28,9 @@ public class TeacountController {
 	/**教师用户登录*/
 	@SuppressWarnings("unused")
 	@RequestMapping("login")
-	public String teacountLogin(HttpServletRequest request,Model model){
+	public String teacountLogin(User user,HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute(UserConstant.REDIRECT_USER);
 	    Teacount teacount = teacountService.getTeacountByUsername(user.getUsername());
-		//清除此对象
-		session.removeAttribute(UserConstant.REDIRECT_USER);
 		if(teacount == null || !teacount.getPassword().equals(user.getPassword())){
 			//如果用户名密码有误，或者密码为空(前端直接过滤)
 			model.addAttribute("status","fail");

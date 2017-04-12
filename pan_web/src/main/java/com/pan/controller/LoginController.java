@@ -23,21 +23,21 @@ public class LoginController{
 		//将重定向之前的数据放进重定向数据中心
 		//attributes.addFlashAttribute(UserConstant.SESSION_USER, user);
 		//attributes.addFlashAttribute("username",user.getUsername());
-		request.getSession().setAttribute(UserConstant.REDIRECT_USER,user);
+		//request.getSession().setAttribute(UserConstant.REDIRECT_USER,user);
 		if(UserConstant.ROOT.equals(user.getIdentity())){
 			//root用户登录
 			logger.info("root用户 :" + user.getUsername() + "登录页面跳转。。");
-			return "redirect:/root/login";
+			return "forward:/root/login";
 		}else if (UserConstant.COLLEGE.equals(user.getIdentity())){
 			//学院账号登录
 			logger.info("学院用户: " + user.getUsername() + "登录界面跳转 。。");
-			return "redirect:/colcount/login";
+			return "forward:/colcount/login";
 		}else if(UserConstant.TEACHER.equals(user.getIdentity())){
 			//老师账号登录
 			logger.info("教室用户: " + user.getUsername() + "登录界面跳转。。");
-			return "redirect:/teacount/login";
+			return "forward:/teacount/login";
 		}else {
-			model.addAttribute("testid", "abc");
+			//model.addAttribute("testid", "abc");
 			return "login";
 		}
 	}
