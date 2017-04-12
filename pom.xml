@@ -35,9 +35,17 @@
 		<activemq.version>5.11.2</activemq.version>
 		<freemarker.version>2.3.23</freemarker.version>
 		<quartz.version>2.2.2</quartz.version>
+		<mail.version>1.4.4</mail.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+		
+		<dependency>
+           <groupId>javax.mail</groupId>
+           <artifactId>mail</artifactId>
+           <version>${mail.version}</version>
+         </dependency>
+		
 			<!-- 时间操作组件 -->
 			<dependency>
 				<groupId>joda-time</groupId>
