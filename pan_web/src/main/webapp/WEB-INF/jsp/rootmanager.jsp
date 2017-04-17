@@ -27,7 +27,35 @@
 	</head>
 	<script type="text/javascript">
 		$(function() {
-
+			
+			$("#createusername").change(function(){
+				//动态获取需要创建的用户名
+				var createusername = $.trim($("#createusername").val());
+				$.post("${pageContext.request.contextPath}/root/isExist",
+						{"username":createusername},function(data){
+						if(data.success == true){
+							//如果可以使用
+							$("#message").text("此用户名可已使用!");
+						}else{
+							//如果用户名存在了
+							$("#message").text("此用户名已存在!");
+						}	
+				
+				});
+				
+			});
+			
+			//点击创建学院账号
+			$("#createColcount").click(function(){
+				var createusername = $("#createusername").val();
+				var createpassword = $("#createpassword").val();
+				$.post("${pageContext.request.contextPath}/root/createColcount",
+							{"username":createusername,"password":createpassword},function(data){
+								
+								
+					
+				});
+			});
 		});
 	</script>
 
@@ -46,7 +74,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-					<a class="navbar-brand" href="#">USC校园网盘</a>
+					<a class="navbar-brand" href="#">南华大学校园网盘</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
@@ -230,27 +258,28 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel"> 创建学院管理员账户</h4>
+						<h4 class="modal-title" id="myModalLabel"> 创建学院管理员账户 &nbsp;&nbsp; <span id="message" style="color:red;font-size:15px;font-weight:bold;"></span>
+						</h4>
 					</div>
 					<div class="modal-body">
 						<form class="form-horizontal" role="form">
 							<div class="form-group">
 								<label for="firstname" class="col-sm-2 control-label">用户名</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="firstname" placeholder="请设置用户名">
+									<input type="text" class="form-control" id="createusername" placeholder="请设置用户名">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="firstname" class="col-sm-2 control-label">密码</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="firstname" placeholder="请设置登录密码">
+									<input type="text" class="form-control" id="createpassword" placeholder="请设置登录密码">
 								</div>
 							</div>
 						</form>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary">创建</button>
+						<button type="button" class="btn btn-primary" id="createColcount">创建</button>
 					</div>
 				</div>
 				<!-- /.modal-content -->

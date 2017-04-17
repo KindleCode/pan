@@ -15,7 +15,7 @@ public class ObjectInstanceofTest {
 		User u1 = new User();
 		User u2 = new User();
 		Colcount colcount = new Colcount();
-		Teacount teacount = new Teacount();
+		//Teacount teacount = new Teacount();
 		//System.out.println( u1 instanceof User);      // true
 		//System.out.println(u1 instanceof Colcount);   // false
 		//System.err.println(colcount instanceof User); // true

@@ -8,27 +8,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pan.constant.UserConstant;
-import com.pan.controller.BaseController;
+import com.pan.domain.Colcount;
+import com.pan.domain.Result;
 import com.pan.domain.Root;
 import com.pan.domain.User;
+import com.pan.service.ColcountService;
 import com.pan.service.RootService;
+import com.pan.utils.RandomUtil;
 
 @Controller
 @RequestMapping(value = "/root")
-public class RootController extends BaseController{
+public class RootController {
 	private static Logger logger = Logger.getLogger(RootController.class);
 	
 	@Autowired
 	private RootService rootService;
+	
+	@Autowired
+	private ColcountService colcountService;
 
 	//Root用户登录
 	@SuppressWarnings("unused")
 	@RequestMapping("/login")
 	public String rootLogin(User user,HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
-		//如果并没有登录
+		//根据用户名查询用户信息
 		Root realRoot = rootService.getRootByUsername(user.getUsername());
 		if(realRoot == null || !realRoot.getPassword().equals(user.getPassword())){
 			//如果用户名密码有误，或者密码为空(前端直接过滤)
@@ -49,4 +56,34 @@ public class RootController extends BaseController{
 		model.addAttribute("message", "登录成功");
 		return "rootmanager";
 	}
+	
+	/**新增学院账号*/
+	@RequestMapping("createColcount")
+	@ResponseBody
+	public Result createColcount(Colcount colcount){
+		//生成学院账号的唯一主键
+		colcount.setColId(RandomUtil.getUUID());
+		//获取当前学院对象
+		
+		//创建学院对应的学院账号
+		
+		
+		
+		return null;
+	}
+	
+	/**判断此学院账号是否存在*/
+	@RequestMapping("isExist")
+	@ResponseBody
+	private Result isExist(String username){
+		//根据用户名查询
+		Colcount colcount = colcountService.getColcountByUsername(username);
+		if(colcount == null)
+			return Result.resultOk("该用户名可以使用!");
+		return Result.resultError("该用户名已经存在!"); 
+	}
+	
 }
+
+
+

@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.pan.mapper.ColcountMapper" >
+	<!-- 根据用户名查询用户 -->
 	<select id="getColcountByUsername" parameterType="String" resultType="com.pan.domain.Colcount">
 		select * from colcount where username = #{username}
 	</select>
+	<!-- 添加学院管理员 -->
+	<insert id="insertColcount" parameterType="com.pan.domain.Colcount" >
+			insert into colcount (id,col_id,username,password,fol_id) 
+				 values(
+							#{id,jdbcType=VARCHAR},
+							#{colId,jdbcType=VARCHAR},
+							#{username,jdbcType=VARCHAR},
+							#{password,jdbcType=VARCHAR},
+							#{folId,jdbcType=VARCHAR}
+						)
+	</insert>
+	<!-- 更新学院账号信息 -->
+	<update id="updateColcount" parameterType="com.pan.domain.Colcount">
+		update colcount 
+			<set>
+				<if test="id != null">
+					id = #{id,jdbcType=VARCHAR},
+				</if>			
+				
+				<if test="colId != null">
+					col_id = #{colId,jdbcType=VARCHAR}, 
+				</if>
+				
+				<if test="username != null">
+					username = #{username,jdbcType=VARCHAR},				
+				</if>
+				
+				<if test="password != null">
+					password = #{password,jdbcType=VARCHAR},
+				</if>
+				
+				<if test="folId != null">
+					fol_id = #{folId,jdbcType=VARCHAR},
+				</if>				
+			
+			</set>
+	
+	</update>
+	<!-- 根据id/用户名删除学院账号 -->
+	<delete id="deleteColcount"></delete>
 </mapper>

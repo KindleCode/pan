@@ -11,10 +11,12 @@ public class Colcount{
 	private String id;
 	//所属学院(外键)
 	private String colId;
-	//此账号所在的根目录
+	//学院账号所在的根目录
 	private String folId;
 	private String username;
 	private String password;
+	
+	
 	public String getId() {
 		return id;
 	}

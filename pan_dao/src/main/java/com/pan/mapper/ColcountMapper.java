@@ -10,11 +10,11 @@ import com.pan.domain.Colcount;
  */
 public interface ColcountMapper {
 	//增加学院账号(由Root账号进行分配)		
-	public void insertColcount(Colcount colcount);
+	public Integer insertColcount(Colcount colcount);
 	//修改学院账号
 	public void updateColcount(Colcount colcount);
 	//删除学院账号
 	public void deleteColcount(Colcount colcount);
 	//根据username查询学院账号
-	public Colcount getColcountByUsername(String name);
+	public Colcount getColcountByUsername(String username);
 }
