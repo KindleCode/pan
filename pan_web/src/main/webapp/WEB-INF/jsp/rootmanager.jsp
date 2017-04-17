@@ -28,6 +28,7 @@
 	<script type="text/javascript">
 		$(function() {
 			
+			//判断新增的用户名是否可用
 			$("#createusername").change(function(){
 				//动态获取需要创建的用户名
 				var createusername = $.trim($("#createusername").val());
@@ -51,12 +52,33 @@
 				var createpassword = $("#createpassword").val();
 				$.post("${pageContext.request.contextPath}/root/createColcount",
 							{"username":createusername,"password":createpassword},function(data){
-								
-								
+					if(data.success == true){
+						//如果创建成功
+						$("#message").text("学院用户创建成功!");
+						//三秒后关闭模态框
+						window.setTimeout(function(){
+							//隐藏模态框，并置空
+							$("#createAcademy").modal('hide');	
+							$("#message").text("");
+							$("#createusername").val("");
+							$("#createpassword").val("");
+						},3000); 
+					}else{
+						//如果创建失败
+						$("#message").text("对不起，创建失败，请联系管理员咨询!");
+					}		
 					
 				});
 			});
+			
+			//关闭模态框，重置文本框
+			$("#closeCreate").click(function(){
+				$("#message").text("");
+				$("#createusername").val("");
+				$("#createpassword").val("");
+			});
 		});
+		
 	</script>
 
 	<body>
@@ -278,7 +300,7 @@
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" id="closeCreate" class="btn btn-default" data-dismiss="modal">关闭</button>
 						<button type="button" class="btn btn-primary" id="createColcount">创建</button>
 					</div>
 				</div>

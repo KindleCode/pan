@@ -70,14 +70,15 @@ public class RootController {
 	@ResponseBody
 	public Result createColcount(Colcount colcount){
 		//生成学院账号的唯一主键
-		colcount.setColId(RandomUtil.getUUID());
+		colcount.setId(RandomUtil.getUUID());
 		//获取当前学院对象
 		College college = collegeService.getCollege(new College(colcount.getColId()));
 		//创建学院对应的学院账号文件夹
-		FolderUtil.createFolder(FolderConstant.ROOT_FOLDER,RandomUtil.getFolderName(100));
-		
-		
-		return null;
+		String folder = FolderUtil.createFolder(FolderConstant.ROOT_FOLDER,RandomUtil.getFolderName(100));
+		colcount.setFolder(folder);
+		//保存colcount对象
+		colcountService.insertColcount(colcount);
+		return Result.resultOk("用户创建成功!");
 	}
 	
 	/**判断此学院账号是否存在*/
@@ -90,6 +91,14 @@ public class RootController {
 			return Result.resultOk("该用户名可以使用!");
 		return Result.resultError("该用户名已经存在!"); 
 	}
+	
+	/**删除学院账号*/
+	@RequestMapping("delete")
+	public Result deleteColcount(Colcount colcount){
+		colcountService.deleteColcount(colcount);
+		return Result.resultOk("用户删除成功!");
+	}
+	
 	
 }
 

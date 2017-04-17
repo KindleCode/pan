@@ -7,9 +7,10 @@ public class FolderUtil {
 	
 	private static final String root_folder = FolderConstant.ROOT_FOLDER; 
 
-	/**创建文件夹*/
-	public static void createFolder(String folder,String name){
+	/**创建文件夹,返回所在的绝对路径*/
+	public static String createFolder(String folder,String name){
 		
+		return "";
 	}
 	
 }
