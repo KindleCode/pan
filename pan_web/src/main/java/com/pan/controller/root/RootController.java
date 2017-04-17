@@ -10,13 +10,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pan.constant.FolderConstant;
 import com.pan.constant.UserConstant;
 import com.pan.domain.Colcount;
+import com.pan.domain.College;
 import com.pan.domain.Result;
 import com.pan.domain.Root;
 import com.pan.domain.User;
 import com.pan.service.ColcountService;
+import com.pan.service.CollegeService;
 import com.pan.service.RootService;
+import com.pan.utils.FolderUtil;
 import com.pan.utils.RandomUtil;
 
 @Controller
@@ -29,6 +33,10 @@ public class RootController {
 	
 	@Autowired
 	private ColcountService colcountService;
+	
+	@Autowired
+	private CollegeService collegeService;
+	
 
 	//Root用户登录
 	@SuppressWarnings("unused")
@@ -64,9 +72,9 @@ public class RootController {
 		//生成学院账号的唯一主键
 		colcount.setColId(RandomUtil.getUUID());
 		//获取当前学院对象
-		
-		//创建学院对应的学院账号
-		
+		College college = collegeService.getCollege(new College(colcount.getColId()));
+		//创建学院对应的学院账号文件夹
+		FolderUtil.createFolder(FolderConstant.ROOT_FOLDER,RandomUtil.getFolderName(100));
 		
 		
 		return null;

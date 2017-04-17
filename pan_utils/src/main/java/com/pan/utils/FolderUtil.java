@@ -3,7 +3,7 @@ package com.pan.utils;
 import com.pan.constant.FolderConstant;
 
 /**文件夹/文件.工具类*/
-public class FolderCreateUtil {
+public class FolderUtil {
 	
 	private static final String root_folder = FolderConstant.ROOT_FOLDER; 
 

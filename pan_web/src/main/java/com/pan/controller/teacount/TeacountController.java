@@ -15,7 +15,7 @@ import com.pan.domain.Result;
 import com.pan.domain.Teacount;
 import com.pan.domain.User;
 import com.pan.service.TeacountService;
-import com.pan.utils.RandomNumber;
+import com.pan.utils.RandomUtil;
 
 @Controller
 @RequestMapping("/teacount/")
@@ -62,7 +62,7 @@ public class TeacountController {
 			return Result.resultError("填写有误!");
 		*/
 		//随机生成一组六位数字，并将密码
-		String newPass = RandomNumber.getRandomPass();
+		String newPass = RandomUtil.getRandomPass();
 		//发送至邮箱(消息队列)
 		
 		//数据库进行密码的修改操作
