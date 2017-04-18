@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pan.constant.FolderConstant;
@@ -22,7 +23,8 @@ import com.pan.service.CollegeService;
 import com.pan.service.RootService;
 import com.pan.utils.FolderUtil;
 import com.pan.utils.RandomUtil;
-
+import com.sun.tools.javac.util.List;
+@SuppressWarnings({ "unchecked", "rawtypes","unused" })
 @Controller
 @RequestMapping(value = "/root")
 public class RootController {
@@ -39,7 +41,6 @@ public class RootController {
 	
 
 	//Root用户登录
-	@SuppressWarnings("unused")
 	@RequestMapping("/login")
 	public String rootLogin(User user,HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
@@ -78,7 +79,7 @@ public class RootController {
 		colcount.setFolder(folder);
 		//保存colcount对象
 		colcountService.insertColcount(colcount);
-		return Result.resultOk("用户创建成功!");
+		return Result.resultOk("用户创建成功!"); 
 	}
 	
 	/**判断此学院账号是否存在*/
@@ -97,6 +98,15 @@ public class RootController {
 	public Result deleteColcount(Colcount colcount){
 		colcountService.deleteColcount(colcount);
 		return Result.resultOk("用户删除成功!");
+	}
+	
+	/**查询所有的学院对象*/
+	@RequestMapping("getAllCollege")
+	@ResponseBody
+	public Result<List<College>> getAllCollege(){
+		Result ok = Result.resultOk("查询成功");
+		ok.setData(collegeService.getAllCollege("1"));
+		return ok;
 	}
 	
 	

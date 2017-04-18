@@ -38,7 +38,7 @@ public class RandomUtil {
 
 	/**生成唯一主键*/
 	public static String getUUID(){
-		return UUID.randomUUID().toString();
+		return UUID.randomUUID().toString().replace("-", "");
 	}
 	
 	public static String getFolderName(int end){
